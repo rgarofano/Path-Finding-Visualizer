@@ -1,17 +1,25 @@
+:root {
+    --background-dark-blue: #1D3557;
+    --background-lighter-blue: #457B9D;
+    --background-light-blue: #A8DADC;
+    --background-red: #E63946;
+}
+
 .grid-item {
+    background-color: var(--background-lighter-blue);
     width: 25px;
     height: 25px;
-    border: 0.1px solid black;
+    border: 0.1px solid var(--background-dark-blue);
 }
 
 .source {
-    background-color: blue;
+    background-color: var(--background-light-blue);
 }
 
 .target {
-    background-color: red;
+    background-color: var(--background-red);
 }
 
 .discovered {
-    background-color: blue;
+    background-color: var(--background-light-blue);
 }

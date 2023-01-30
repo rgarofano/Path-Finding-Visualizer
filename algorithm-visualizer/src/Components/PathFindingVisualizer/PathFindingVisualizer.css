@@ -2,6 +2,10 @@
     --num-rows: 25;
     --num-cols: 50;
     --grid-item-size: 27px;
+    --background-dark-blue: #1D3557;
+    --background-lighter-blue: #457B9D;
+    --background-light-blue: #A8DADC;
+    --background-red: #E63946;
 }
 
 .grid-container {
@@ -11,5 +15,18 @@
     grid-template-rows: repeat(var(--num-rows), 1fr);
     grid-template-columns: repeat(var(--num-cols), 1fr);
     gap: 0;
-    border: 0.1px solid black;
+    box-shadow: 0 0 10px black;
+}
+
+button {
+    background-color: var(--background-dark-blue);
+    font-size: 1.5em;
+    color: white;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 3px solid white;
+}
+
+button:hover {
+    box-shadow: 0 0 5px white;
 }
