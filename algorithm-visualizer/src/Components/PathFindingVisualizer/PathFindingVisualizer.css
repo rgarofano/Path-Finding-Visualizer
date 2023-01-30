@@ -27,6 +27,13 @@ button {
     border: 3px solid white;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     box-shadow: 0 0 5px white;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: black;
+    border: 3px solid rgba(0, 0, 0, 0.5);
 }

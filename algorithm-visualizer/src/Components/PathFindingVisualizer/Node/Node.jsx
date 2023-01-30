@@ -14,8 +14,8 @@ export default function Node(props) {
         mouseUpHandler,
     } = props;
 
-    let nodeStatus = isSource ? 'source' : isTarget ? 'target' :
-        isDiscovered ? 'discovered' : isWall ? 'wall' : isInShortestPath ? 'path' : '';
+    let nodeStatus = isTarget ? 'target' : isInShortestPath ? 'path' : isSource ? 'source' :
+        isDiscovered ? 'discovered' : isWall ? 'wall' : '';
 
     return (
         <div

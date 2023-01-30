@@ -10,11 +10,14 @@ let sourceRow = 10;
 let sourceCol = 5;
 let targetRow = 10;
 let targetCol = 25;
+let animationDelay = 10;
 
 export default function PathFindingVisualizer() {
-    const nodes = useGrid();
+    const nodes = createGrid();
     const [grid, setGrid] = useState(nodes);
     const [mouseDown, setMouseDown] = useState(false);
+    const [disableReset, setDisableReset] = useState(true);
+    const [disableDijkstra, setDisableDijkstra] = useState(false);
 
     const animateNodesInOrder = nodeVisitingOrder => {
         for (let nodeIndex = 0; nodeIndex < nodeVisitingOrder.length; nodeIndex++) {
@@ -27,11 +30,11 @@ export default function PathFindingVisualizer() {
                 };
                 newGrid[node.row][node.col] = discoveredNode;
                 setGrid(newGrid);
-            }, 15 * nodeIndex);
+            }, animationDelay * nodeIndex);
         }
 
         const path = getShortestPathOrder(grid);
-        const searchDelay = nodeVisitingOrder.length * 15;
+        const searchDelay = nodeVisitingOrder.length * animationDelay;
         for (let nodeIndex = 0; nodeIndex < path.length; nodeIndex++) {
             setTimeout(() => {
                 const newGrid = grid.slice();
@@ -44,9 +47,16 @@ export default function PathFindingVisualizer() {
                 setGrid(newGrid);
             }, searchDelay + nodeIndex * 10);
         }
+
+        setTimeout(() => {
+            setDisableReset(false);
+            setDisableDijkstra(false);
+        }, searchDelay + path.length * animationDelay);
     }
 
     const runDijkstra = () => {
+        setDisableDijkstra(true);
+        setDisableReset(true);
         const sourceNode = grid[sourceRow][sourceCol];
         const targetNode = grid[targetRow][targetCol];
         const nodeVisitingOrder = dijkstra(grid, sourceNode, targetNode);
@@ -55,6 +65,7 @@ export default function PathFindingVisualizer() {
     }
 
     const mouseDownHandler = (row, col) => {
+        if (!disableReset) return;
         const newGrid = getToggledGrid(grid, row, col);
         setGrid([...newGrid]);
         setMouseDown(true);
@@ -72,7 +83,17 @@ export default function PathFindingVisualizer() {
 
     return (
         <>
-            <button onClick={() => runDijkstra()}>Visualize Dijkstra</button>
+            <button onClick={runDijkstra}
+                disabled={disableDijkstra}>
+                Visualize Dijkstra
+            </button>
+            <button onClick={() => {
+                setDisableReset(true);
+                setGrid(createGrid());
+            }}
+                disabled={disableReset}>
+                Reset
+            </button>
             <div className='grid-container'>
                 {grid.map((row, rowIndex) => {
                     return <>
@@ -101,7 +122,7 @@ export default function PathFindingVisualizer() {
     )
 }
 
-function useGrid() {
+function createGrid() {
     const gridObjectsArray = [];
     for (let row = 0; row < NUM_ROWS; row++) {
         const currentRow = [];
@@ -141,7 +162,6 @@ function getToggledGrid(grid, row, col) {
 function getShortestPathOrder(grid) {
     const path = [];
     let currentNode = grid[targetRow][targetCol];
-    let count = 0;
     while (currentNode.previousNode) {
         path.unshift(currentNode);
         currentNode = currentNode.previousNode;
