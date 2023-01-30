@@ -23,3 +23,11 @@
 .discovered {
     background-color: var(--background-light-blue);
 }
+
+.wall {
+    background-color: var(--background-dark-blue);
+}
+
+.path {
+    background-color: yellowgreen;
+}
