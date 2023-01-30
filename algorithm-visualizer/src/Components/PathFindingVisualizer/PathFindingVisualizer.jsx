@@ -60,7 +60,6 @@ export default function PathFindingVisualizer() {
         const sourceNode = grid[sourceRow][sourceCol];
         const targetNode = grid[targetRow][targetCol];
         const nodeVisitingOrder = dijkstra(grid, sourceNode, targetNode);
-        console.log(nodeVisitingOrder);
         animateNodesInOrder(nodeVisitingOrder);
     }
 
