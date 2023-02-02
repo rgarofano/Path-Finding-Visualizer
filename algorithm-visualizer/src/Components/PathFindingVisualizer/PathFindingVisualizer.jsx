@@ -4,13 +4,14 @@ import Node from './Node/Node';
 import dijkstra from '../../algorithms/dijkstra';
 
 const NUM_ROWS = 25;
-const NUM_COLS = 50;
+const NUM_COLS = 60;
 
 let sourceRow = 10;
 let sourceCol = 5;
 let targetRow = 10;
 let targetCol = 25;
 let animationDelay = 10;
+let colorWaveDelay = 1000;
 
 export default function PathFindingVisualizer() {
     const nodes = createGrid();
@@ -45,7 +46,7 @@ export default function PathFindingVisualizer() {
                 };
                 newGrid[node.row][node.col] = pathNode;
                 setGrid(newGrid);
-            }, searchDelay + nodeIndex * 10);
+            }, colorWaveDelay + searchDelay + nodeIndex * 20);
         }
 
         setTimeout(() => {

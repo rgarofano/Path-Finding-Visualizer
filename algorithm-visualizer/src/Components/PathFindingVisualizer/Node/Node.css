@@ -7,8 +7,8 @@
 
 .grid-item {
     background-color: var(--background-lighter-blue);
-    width: 25px;
-    height: 25px;
+    width: 1.25vw;
+    height: 1.25vw;
     border: 0.1px solid var(--background-dark-blue);
 }
 
@@ -22,12 +22,42 @@
 
 .discovered {
     background-color: var(--background-light-blue);
+    animation: colorWave 1500ms;
 }
 
 .wall {
     background-color: var(--background-dark-blue);
+    animation: growShrink 500ms;
 }
 
 .path {
     background-color: yellowgreen;
+    animation: growShrink 500ms;
+}
+
+@keyframes growShrink {
+    from {
+        transform: scale(1.25);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes colorWave {
+    0% {
+        background-color: #512ba9;
+    }
+
+    25% {
+        background-color: #625dc8;
+    }
+
+    50% {
+        background-color: #5f79f0;
+    }
+
+    100% {
+        background-color: #7fd7f2;
+    }
 }
