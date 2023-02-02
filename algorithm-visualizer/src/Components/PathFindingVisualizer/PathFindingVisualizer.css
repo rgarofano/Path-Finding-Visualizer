@@ -1,7 +1,7 @@
 :root {
     --num-rows: 25;
     --num-cols: 60;
-    --grid-item-size: calc(1.25vw + 2px);
+    --grid-item-size: calc(min(1.25vw, 2.3vh) + 2px);
     --background-dark-blue: #1D3557;
     --background-lighter-blue: #457B9D;
     --background-light-blue: #A8DADC;
