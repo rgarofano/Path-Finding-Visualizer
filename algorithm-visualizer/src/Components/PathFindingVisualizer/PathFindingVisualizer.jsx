@@ -51,7 +51,7 @@ export default function PathFindingVisualizer() {
 
         setTimeout(() => {
             setDisableReset(false);
-            setDisableDijkstra(false);
+            setDisableDijkstra(true);
         }, searchDelay + path.length * animationDelay);
     }
 
@@ -89,6 +89,7 @@ export default function PathFindingVisualizer() {
             </button>
             <button onClick={() => {
                 setDisableReset(true);
+                setDisableDijkstra(false);
                 setGrid(createGrid());
             }}
                 disabled={disableReset}>
